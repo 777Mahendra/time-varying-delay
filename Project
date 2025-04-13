@@ -1,0 +1,39 @@
+• One class of sound effects in electronic music synthesis and production create a periodically varying 
+  delay in the input signal, i.e.,
+
+      y(n) = x(n - D(n)),
+
+  where, x(n) = sin(2π3400 * n / fₛ) and 0 < n < 40000. Define the time-varying delay:
+
+      D(n) = meanDelay + delayAmp * sin(2πfⱼ * n / fₛ)
+
+  - meanDelay is the average delay per sample and is an integer.
+  - delayAmp is an integer < meanDelay.
+  - fⱼ is the jitter frequency.
+  - fₛ is the sampling rate.
+
+• If D(n) is not an integer, the corresponding y(n) value is found by linearly interpolating between 
+  the two neighbouring samples in the input sequence x(·).
+
+• Design an algorithm to implement the signal processing operation described above and implement it 
+  in a Matlab function `timevarying_delay.m` using the following API spec:
+
+---
+
+API Specification:
+
+1. Function name: `timevarying_delay.m`
+
+2. Function call:
+       y = timevarying_delay(meanDelay, delayAmp, fⱼ, fₛ)
+
+3. Input arguments:
+   (a) meanDelay, delayAmp, fⱼ, fₛ : As defined above.
+
+4. Output:
+   (a) y : Delayed output (a row vector)
+
+---
+
+Note: The function should handle arbitrary valid values provided for 
+      meanDelay, delayAmp, fⱼ, and fₛ ≠ 0.
